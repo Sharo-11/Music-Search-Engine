@@ -11,6 +11,8 @@ root.geometry("1000x750+300+10")
 root.resizable(False, False)
 root.config(bg = "#FFFFFF")
 
+mixer.init()
+
 rootpath = "C:\\Users\\sharo\\Desktop\\Music"
 pattern = "*.mp3"
 
@@ -40,25 +42,51 @@ def theme():
     pass
 
 def pause():
-    pass
+    if pause_btn["text"] == "Pause":
+        mixer.music.pause()
+        pause_btn["text"] = "Play"
+    else:
+        mixer.music.unpause()
+        pause_btn["text"] = "Pause"
 
 def restart():
-    pass
+    mixer.music.rewind()
 
 def stop():
-    pass
+    mixer.music.stop()
+    listBox.select_clear('active')
 
 def previous():
-    pass
+    prev_song = listBox.curselection()
+    prev_song = prev_song[0] - 1
+    prev_song_name = listBox.get(prev_song)
+    label.config(text = prev_song_name)
+
+    mixer.music.load(rootpath + "\\" + prev_song_name)
+    mixer.music.play()
+
+    listBox.select_clear(0, 'end')
+    listBox.activate(prev_song)
+    listBox.select_set(prev_song)
 
 def next():
-    pass
+    next_song = listBox.curselection()
+    next_song = next_song[0] + 1
+    next_song_name = listBox.get(next_song)
+    label.config(text = next_song_name)
+
+    mixer.music.load(rootpath + "\\" + next_song_name)
+    mixer.music.play()
+
+    listBox.select_clear(0, 'end')
+    listBox.activate(next_song)
+    listBox.select_set(next_song)
 
 def search_online():
     pass
 
-label = Label(root, text = "", bg = "black", fg = "yellow", font = ("Courier", 23, "bold"), width = 25, height = 1)
-label.place(x = 500, y = 500)
+label = Label(root, text = "", fg = "#f61b60", bg = "#500491", font = ("Courier", 14, "bold"), width = 45, height = 2)
+label.place(x = 470, y = 500)
 
 #===============================================LEFT===============================================
 side_panel = Frame(root, width = 450, height = 750, bg = "#500491")
@@ -89,7 +117,7 @@ play_ch = ImageTk.PhotoImage(play_img)
 play_icon = Label(root, image=play_ch, bg = "white")
 play_icon.image = play_ch  # Store a reference to the image to prevent it from being garbage collected
 play_icon.place(x=600, y=600)  # Add the play_icon label to the window
-play_btn = Button(root, image=play_ch, command=play, bd = 0, bg = "white")
+play_btn = Button(root, text = "Play", image=play_ch, command=play, bd = 0, bg = "white")
 play_btn.place(x=600, y=600)
 #------------------------------------------------Pause button------------------------------------------------
 pause_img = Image.open("images/pause.png")
@@ -98,7 +126,7 @@ pause_ch = ImageTk.PhotoImage(pause_img)
 pause_icon = Label(root, image=pause_ch, bg = "white")
 pause_icon.image = pause_ch  # Store a reference to the image to prevent it from being garbage collected
 pause_icon.place(x=675, y=600)  # Add the play_icon label to the window
-pause_btn = Button(root, image=pause_ch, command=pause, bd = 0, bg = "white")
+pause_btn = Button(root, text = "Pause",image=pause_ch, command=pause, bd = 0, bg = "white")
 pause_btn.place(x=675, y=600)
 #------------------------------------------------Restart button------------------------------------------------
 restart_img = Image.open("images/restart.png")
