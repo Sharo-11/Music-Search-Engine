@@ -156,7 +156,7 @@ play_ch = ImageTk.PhotoImage(play_img)
 play_icon = Label(root, image=play_ch, bg = light)
 play_icon.image = play_ch  
 play_icon.place(x=600, y=600)  
-play_btn = Button(root, text = "Play", image=play_ch, command=play, bd = 0, bg = light, relief = FLAT)
+play_btn = Button(root, text = "Play", image=play_ch, command=play, bg = light, relief = FLAT)
 play_btn.place(x=600, y=600)
 #------------------------------------------------Pause button------------------------------------------------
 pause_img = Image.open("images/pause.png")
@@ -165,7 +165,7 @@ pause_ch = ImageTk.PhotoImage(pause_img)
 pause_icon = Label(root, image=pause_ch, bg = light)
 pause_icon.image = pause_ch 
 pause_icon.place(x=675, y=600)
-pause_btn = Button(root, text = "Pause",image=pause_ch, command=pause, bd = 0, bg = light, relief = FLAT)
+pause_btn = Button(root, text = "Pause",image=pause_ch, command=pause, bg = light, relief = FLAT)
 pause_btn.place(x=675, y=600)
 #------------------------------------------------Restart button------------------------------------------------
 restart_img = Image.open("images/restart.png")
@@ -174,7 +174,7 @@ restart_ch = ImageTk.PhotoImage(restart_img)
 restart_icon = Label(root, image=restart_ch, bg = light)
 restart_icon.image = restart_ch  
 restart_icon.place(x= 750, y = 600) 
-restart_btn = Button(root, image=restart_ch, command=restart, bd = 0, bg = light, relief = FLAT)
+restart_btn = Button(root, image=restart_ch, command=restart, bg = light, relief = FLAT)
 restart_btn.place(x= 750, y = 600)
 #------------------------------------------------Stop button------------------------------------------------
 stop_img = Image.open("images/stop.png")
@@ -183,7 +183,7 @@ stop_ch = ImageTk.PhotoImage(stop_img)
 stop_icon = Label(root, image=stop_ch, bg = light)
 stop_icon.image = stop_ch 
 stop_icon.place(x= 825, y = 600) 
-stop_btn = Button(root, image=stop_ch, command=stop, bd = 0, bg = light, relief = FLAT)
+stop_btn = Button(root, image=stop_ch, command=stop, bg = light, relief = FLAT)
 stop_btn.place(x= 825, y = 600)
 #------------------------------------------------Previous button------------------------------------------------
 previous_img = Image.open("images/previous.png")
@@ -192,7 +192,7 @@ previous_ch = ImageTk.PhotoImage(previous_img)
 previous_icon = Label(root, image=previous_ch, bg = light)
 previous_icon.image = previous_ch  
 previous_icon.place(x= 525, y = 600) 
-previous_btn = Button(root, image=previous_ch, command=previous, bd = 0, bg = light, relief = FLAT)
+previous_btn = Button(root, image=previous_ch, command=previous, bg = light, relief = FLAT)
 previous_btn.place(x= 525, y = 600)
 #------------------------------------------------Next button------------------------------------------------
 next_img = Image.open("images/next.png")
@@ -201,7 +201,7 @@ next_ch = ImageTk.PhotoImage(next_img)
 next_icon = Label(root, image=next_ch, bg = light)
 next_icon.image = next_ch  
 next_icon.place(x= 900, y = 600) 
-next_btn = Button(root, image=next_ch, command=next, bd = 0, bg = light, relief = FLAT)
+next_btn = Button(root, image=next_ch, command=next, bg = light, relief = FLAT)
 next_btn.place(x= 900, y = 600)
 
 for dirs, _, files in os.walk(rootpath):
