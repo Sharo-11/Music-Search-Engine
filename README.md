@@ -33,8 +33,12 @@ To run the program, you will need to install the following libraries.
 
 ## Screenshots
 
-![alt text](./assets/music01.png)
-![alt text](./assets/music02.png)
+### Light Mode
+![music1](https://user-images.githubusercontent.com/110475514/231465248-dd105fbe-f321-4987-9514-d00242c7418c.png)
+
+
+### Dark mode
+![music2](https://user-images.githubusercontent.com/110475514/231465612-228cdb02-2867-460e-a668-b0b8c446bbd0.png)
 
 
 
