@@ -38,7 +38,8 @@ To run the program, you will need to install the following libraries.
 
 
 ### Dark mode
-![music2](https://user-images.githubusercontent.com/110475514/231465612-228cdb02-2867-460e-a668-b0b8c446bbd0.png)
+![music2](https://user-images.githubusercontent.com/110475514/231553549-df8c8fd0-6062-428a-ab7b-83f38e99b54b.png)
+
 
 
 
