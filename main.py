@@ -2,6 +2,7 @@ from tkinter import *
 import fnmatch
 import os 
 from pygame import mixer
+import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
 
@@ -11,12 +12,10 @@ dark = "#000000"
 purple = "#500491"
 pink = "#f61b60"
 green = "#039103"
-blue = "#ba5b02"
 root.title("Music-Search-Engine")
 root.geometry("1000x750+300+10")
 root.resizable(False, False)
 root.config(bg=light)
-pic = "images/photo.png"
 mixer.init()
 
 rootpath = "C:\\Users\\sharo\\Desktop\\Music"
@@ -29,6 +28,10 @@ listBox.place(x=15, y=370)
 def display_songs():
     global listBox
     listBox = Listbox(root, fg=pink, bg=purple, width=42, height=19, font=("Courier", 12, "bold"))
+    scrollbar = tk.Scrollbar(root)
+    scrollbar.config(command=listBox.yview)
+    listBox.config(yscrollcommand=scrollbar.set)
+    scrollbar.pack(side = LEFT)
     listBox.place(x=15, y=370)
 
     for dirs, _, files in os.walk(rootpath):
@@ -52,7 +55,7 @@ def theme():
     como.bind("<<ComboboxSelected>>", The)
 
 def The(event = None):
-    global dark, green, black, pic
+    global dark, green, black, pic, photo_ch, photo_d
     theme = var.get()
     if theme == "Dark":
         root.config(bg=green)
@@ -66,7 +69,8 @@ def The(event = None):
         next_btn.config(bg=green) 
         title_lbl.config(fg = dark)
         side_panel.config(bg=dark)
-        pic = "images/bg1.png" 
+        photo_d = PhotoImage(file = "images/bg1.png")
+        photo_ch.config(image = photo_d)
         for child in side_panel.winfo_children():
             child.configure(bg=light)
     elif theme == "Light":
@@ -74,6 +78,8 @@ def The(event = None):
         listBox.config(fg=pink, bg=purple)
         label.config(fg=pink, bg=purple)
         title_lbl.config(bg=purple)
+        photo_d = PhotoImage(file = "images/photo.png")
+        photo_ch.config(image = photo_d)
         for child in title_lbl.winfo_children():
             child.configure(bg = pink)
         side_panel.config(bg=purple)
@@ -144,12 +150,11 @@ theme_btn = Button(side_panel, text = "Themes", font = ("Lucida Console", 15), c
 theme_btn.place(x = 35, y = 305)
 
 #===============================================RIGHT===============================================
-photo_img = Image.open(pic)
-photo_img = photo_img.resize((465,425), Image.LANCZOS)
-photo_ch = ImageTk.PhotoImage(photo_img)
-photo_bg = Label(root, image = photo_ch)
-photo_bg.place(x = 500, y = 30)
-
+pic_frame = Frame(root, width=425, height=425)
+pic_frame.place(x = 500, y = 30)
+photo_bg = PhotoImage(file="images/photo.png")
+photo_ch = Label(pic_frame, image=photo_bg, bg = light)
+photo_ch.pack()
 #------------------------------------------------Play button------------------------------------------------
 play_img = Image.open("images/play.png")
 play_img = play_img.resize((30,30), Image.LANCZOS)
