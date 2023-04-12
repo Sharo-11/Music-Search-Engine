@@ -16,7 +16,7 @@ root.title("Music-Search-Engine")
 root.geometry("1000x750+300+10")
 root.resizable(False, False)
 root.config(bg=light)
-
+pic = "images/photo.png"
 mixer.init()
 
 rootpath = "C:\\Users\\sharo\\Desktop\\Music"
@@ -52,7 +52,7 @@ def theme():
     como.bind("<<ComboboxSelected>>", The)
 
 def The(event = None):
-    global dark, green, black
+    global dark, green, black, pic
     theme = var.get()
     if theme == "Dark":
         root.config(bg=green)
@@ -65,7 +65,8 @@ def The(event = None):
         previous_btn.config(bg=green) 
         next_btn.config(bg=green) 
         title_lbl.config(fg = dark)
-        side_panel.config(bg=dark) 
+        side_panel.config(bg=dark)
+        pic = "images/bg1.png" 
         for child in side_panel.winfo_children():
             child.configure(bg=light)
     elif theme == "Light":
@@ -143,7 +144,7 @@ theme_btn = Button(side_panel, text = "Themes", font = ("Lucida Console", 15), c
 theme_btn.place(x = 35, y = 305)
 
 #===============================================RIGHT===============================================
-photo_img = Image.open("images/photo.png")
+photo_img = Image.open(pic)
 photo_img = photo_img.resize((465,425), Image.LANCZOS)
 photo_ch = ImageTk.PhotoImage(photo_img)
 photo_bg = Label(root, image = photo_ch)
