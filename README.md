@@ -31,6 +31,11 @@ To run the program, you will need to install the following libraries.
   pip install fnmatch
 ```
 
+## Screenshots
+
+![music1](https://user-images.githubusercontent.com/110475514/231465248-dd105fbe-f321-4987-9514-d00242c7418c.png)
+![music2](https://user-images.githubusercontent.com/110475514/231465612-228cdb02-2867-460e-a668-b0b8c446bbd0.png)
+
 
 
 
