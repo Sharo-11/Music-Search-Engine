@@ -31,11 +31,6 @@ To run the program, you will need to install the following libraries.
   pip install fnmatch
 ```
 
-## Screenshots
-
-![alt text](./assets/music01.png)
-![alt text](./assets/music02.png)
-
 
 
 
