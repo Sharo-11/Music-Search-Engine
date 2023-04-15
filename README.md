@@ -28,7 +28,7 @@ To run the program, you will need to install the following libraries.
 
 ### Fnmatch
 ```bash
-  pip install fnmatch
+  pip install pycopy-fnmatch
 ```
 
 ## Screenshots
