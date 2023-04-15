@@ -10,7 +10,7 @@ As the name suggests, Music-Search-Engine is an app for searching and playing mu
 
 ## Requirements
 
-On your desktop, create a folder named "Music". 
+On your desktop, create a folder named "Music" copy this path of Music folder and paste it in the code in "rootpath" variable.
 
 To run the program, you will need to install the following libraries.
 
