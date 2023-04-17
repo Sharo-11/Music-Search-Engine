@@ -10,7 +10,7 @@ As the name suggests, Music-Search-Engine is an app for searching and playing mu
 
 ## Requirements
 
-On your desktop, create a folder named "Music". 
+On your desktop, create a folder named "Music" copy this path of Music folder and paste it in the code in "rootpath" variable.
 
 To run the program, you will need to install the following libraries.
 
@@ -28,7 +28,7 @@ To run the program, you will need to install the following libraries.
 
 ### Fnmatch
 ```bash
-  pip install fnmatch
+  pip install pycopy-fnmatch
 ```
 
 ## Screenshots
@@ -38,7 +38,8 @@ To run the program, you will need to install the following libraries.
 
 
 ### Dark mode
-![music2](https://user-images.githubusercontent.com/110475514/231465612-228cdb02-2867-460e-a668-b0b8c446bbd0.png)
+![music2](https://user-images.githubusercontent.com/110475514/231553549-df8c8fd0-6062-428a-ab7b-83f38e99b54b.png)
+
 
 
 
