@@ -5,6 +5,7 @@ from pygame import mixer
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
+import requests
 
 root = Tk()
 light = "#FFFFFF"
@@ -23,28 +24,55 @@ pattern = "*.mp3"
 
 listBox = Listbox(root, fg=pink, bg=purple, width=42, height=19, font=("Courier", 12, "bold"))
 listBox.place(x=15, y=370)
-
 #===============================================Functions===============================================
 def display_songs():
     global listBox
     listBox = Listbox(root, fg=pink, bg=purple, width=42, height=19, font=("Courier", 12, "bold"))
-    scrollbar = tk.Scrollbar(root)
-    scrollbar.config(command=listBox.yview)
-    listBox.config(yscrollcommand=scrollbar.set)
-    scrollbar.pack(side = LEFT)
     listBox.place(x=15, y=370)
 
     for dirs, _, files in os.walk(rootpath):
         for filename in fnmatch.filter(files, pattern):
             listBox.insert('end', filename)
 
+def search_soundcloud(query):
+    # Replace YOUR_CLIENT_ID with your actual client ID
+    url = f'https://api.soundcloud.com/tracks?q={query}&client_id=YOUR_CLIENT_ID'
+    response = requests.get(url)
+    tracks = response.json()
+    return tracks
+
+def search_online():
+    search_entry = Entry(side_panel, font = ("Courier", 14), width = 33)
+    search_entry.place(x = 35, y = 320)
+
+    def search_online():
+        global listBox
+        search_query = search_entry.get()
+        tracks = search_soundcloud(search_query)
+        listBox.delete(0, END)
+        for track in tracks:
+            listBox.insert(END, track['title'])
+
 def play():
     label.config(text=listBox.get("anchor"))
     mixer.music.load(rootpath + "\\" + listBox.get("anchor"))
     mixer.music.play()
+    def play():
+        global listBox
+        label.config(text=listBox.get("anchor"))
+        track_title = listBox.get("anchor")
+        tracks = search_soundcloud(track_title)
+        if len(tracks) > 0:
+            track_url = tracks[0]['stream_url'] + '?client_id=YOUR_CLIENT_ID'
+            mixer.music.load(track_url)
+            mixer.music.play()
+        else:
+            print('Track not found on SoundCloud')
+
 
 def settings():
     pass
+
 def theme():
     global var, como
     var = StringVar()
@@ -77,6 +105,12 @@ def The(event = None):
         root.config(bg=light)
         listBox.config(fg=pink, bg=purple)
         label.config(fg=pink, bg=purple)
+        play_btn.config(bg=light) 
+        pause_btn.config(bg=light) 
+        restart_btn.config(bg=light) 
+        stop_btn.config(bg=light) 
+        previous_btn.config(bg=light) 
+        next_btn.config(bg=light)
         title_lbl.config(bg=purple)
         photo_d = PhotoImage(file = "images/photo.png")
         photo_ch.config(image = photo_d)
@@ -128,8 +162,6 @@ def next():
     listBox.activate(next_song)
     listBox.select_set(next_song)
 
-def search_online():
-    pass
 
 label = Label(root, text = "", fg = pink, bg = purple, font = ("Courier", 14, "bold"), width = 45, height = 2)
 label.place(x = 470, y = 500)
@@ -144,10 +176,8 @@ all_songs_btn = Button(side_panel, text = "All songs", font = ("Lucida Console",
 all_songs_btn.place(x = 35, y = 125)
 search_btn = Button(side_panel, text = "Search Online", font = ("Lucida Console", 15), command = search_online, bg = light, bd = 0, height = 2, width = 30)
 search_btn.place(x = 35, y = 185)
-settings_btn = Button(side_panel, text = "Settings", font = ("Lucida Console", 15), command = settings, bg = light, bd = 0, height = 2, width = 30)
-settings_btn.place(x = 35, y = 245)
 theme_btn = Button(side_panel, text = "Themes", font = ("Lucida Console", 15), command = theme, bg = light, bd = 0, height = 2, width = 30)
-theme_btn.place(x = 35, y = 305)
+theme_btn.place(x = 35, y = 245)
 
 #===============================================RIGHT===============================================
 pic_frame = Frame(root, width=425, height=425)
